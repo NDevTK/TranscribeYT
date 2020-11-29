@@ -5,13 +5,25 @@ const Sox = require('sox-stream');
 const MemoryStream = require('memory-stream');
 const Duplex = require('stream').Duplex;
 const Wav = require('node-wav');
+const fetch = require('node-fetch');
 const url = "https://www.youtube.com/watch?v=ck7utXYcZng";
 
+await fetch('https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deepspeech-0.9.1-models.pbmm').then(res => {
+  const dest = Fs.createWriteStream('deepspeech.pbmm');
+  res.body.pipe(dest);
+});
+
+await fetch('https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deepspeech-0.9.1-models.scorer').then(res => {
+  const dest = Fs.createWriteStream('deepspeech.scorer');
+  res.body.pipe(dest);
+});
+
+
 youtubedl.exec(url, ['-x', '--audio-format', 'wav', '-o', 'audio.%(ext)s'], {}, function(err, output) {
-  if (err) throw err
+if (err) throw err
  
-  console.log(output.join('\n'))
-})
+console.log(output.join('\n'))
+
 
 let modelPath = 'deepspeech.pbmm';
 
@@ -72,3 +84,4 @@ audioStream.on('finish', () => {
 	
 	console.log('result:', result);
 });
+})
