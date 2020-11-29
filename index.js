@@ -8,6 +8,10 @@ const Wav = require('node-wav');
 const fetch = require('node-fetch');
 const url = "https://www.youtube.com/watch?v=ck7utXYcZng";
 
+
+youtubedl.exec(url, ['-x', '--audio-format', 'wav', '-o', 'audio.%(ext)s'], {}, async function(err, output) {
+if (err) throw err
+
 await fetch('https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deepspeech-0.9.1-models.pbmm').then(res => {
   const dest = Fs.createWriteStream('deepspeech.pbmm');
   res.body.pipe(dest);
@@ -18,12 +22,7 @@ await fetch('https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deep
   res.body.pipe(dest);
 });
 
-
-youtubedl.exec(url, ['-x', '--audio-format', 'wav', '-o', 'audio.%(ext)s'], {}, function(err, output) {
-if (err) throw err
- 
 console.log(output.join('\n'))
-
 
 let modelPath = 'deepspeech.pbmm';
 
