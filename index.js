@@ -12,12 +12,12 @@ const url = "https://www.youtube.com/watch?v=ck7utXYcZng";
 youtubedl.exec(url, ['-x', '--audio-format', 'wav', '-o', 'audio.%(ext)s'], {}, async function(err, output) {
 if (err) throw err
 
-await fetch('https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deepspeech-0.9.1-models.pbmm').then(res => {
+await fetch('https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deepspeech-0.9.1-models.pbmm', {redirect: 'follow'}).then(res => {
   const dest = Fs.createWriteStream('deepspeech.pbmm');
   res.body.pipe(dest);
 });
 
-await fetch('https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deepspeech-0.9.1-models.scorer').then(res => {
+await fetch('https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deepspeech-0.9.1-models.scorer', {redirect: 'follow'}).then(res => {
   const dest = Fs.createWriteStream('deepspeech.scorer');
   res.body.pipe(dest);
 });
