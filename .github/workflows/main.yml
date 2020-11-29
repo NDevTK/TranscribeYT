@@ -14,23 +14,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - uses: actions/checkout@master
-      with:
-        persist-credentials: false
-        fetch-depth: 0
-    - uses: actions/setup-node@v1
-    - name: Getting dependencies
+    - name: Getting ffmpeg
+      run: sudo apt install ffmpeg
+    - name: Getting deepspeech youtube-dl
       run: npm install deepspeech youtube-dl
     - name: Main
       run: node index.js
-    - name: Commit files
-      run: |
-        git pull
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Results [Auto]" -a
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
