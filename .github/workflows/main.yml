@@ -17,6 +17,6 @@ jobs:
     - uses: actions/checkout@v2
     - uses: FedericoCarboni/setup-ffmpeg@v1-beta
     - name: Getting deepspeech youtube-dl
-      run: npm install deepspeech youtube-dl
+      run: npm install deepspeech youtube-dl node-fetch
     - name: Main
       run: node index.js
