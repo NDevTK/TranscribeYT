@@ -24,13 +24,13 @@ await fetch('https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deep
 
 console.log(output.join('\n'))
 
-let modelPath = 'deepspeech.pbmm';
+let modelPath = './deepspeech.pbmm';
 
 let model = new DeepSpeech.Model(modelPath);
 
 let desiredSampleRate = model.sampleRate();
 
-let scorerPath = 'deepspeech.scorer';
+let scorerPath = './deepspeech.scorer';
 
 model.enableExternalScorer(scorerPath);
 
