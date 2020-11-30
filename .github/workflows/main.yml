@@ -15,7 +15,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - uses: actions/checkout@v2
-    - uses: FedericoCarboni/setup-ffmpeg@v1-beta
+    - name: Add repo for ffmpeg
+      run: sudo add-apt-repository ppa:jonathonf/ffmpeg-4 -y
+    - name: Updating index
+      run: sudo apt update
+    - name: Getting ffmpeg
+      run: sudo apt install -y ffmpeg
     - name: Downloading deepspeech.pbmm
       uses: wei/wget@v1
       with:
