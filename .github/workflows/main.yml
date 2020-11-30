@@ -26,5 +26,7 @@ jobs:
         args: -O deepspeech.scorer https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deepspeech-0.9.1-models.scorer
     - name: Getting deepspeech youtube-dl
       run: npm install deepspeech youtube-dl
+    - name: sox
+      run: sudo apt-get install sox
     - name: Main
       run: node index.js
