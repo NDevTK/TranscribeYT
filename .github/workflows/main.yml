@@ -15,8 +15,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - uses: actions/checkout@v2
-    - name: Add repo for ffmpeg
-      run: sudo add-apt-repository ppa:jonathonf/ffmpeg-4 -y
     - name: Updating index
       run: sudo apt update
     - name: Getting ffmpeg
@@ -29,8 +27,8 @@ jobs:
       uses: wei/wget@v1
       with:
         args: -O deepspeech.scorer https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deepspeech-0.9.1-models.scorer
-    - name: Getting deepspeech youtube-dl
-      run: npm install deepspeech youtube-dl
+    - name: Getting deepspeech youtube-dl liblilv-dev
+      run: npm install deepspeech youtube-dl liblilv-dev
     - name: sox
       run: sudo apt-get install sox
     - name: Main
