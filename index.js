@@ -8,7 +8,7 @@ const Wav = require('node-wav');
 const url = "https://www.youtube.com/watch?v=ck7utXYcZng";
 
 
-youtubedl.exec(url, ['-x', '--audio-format', 'wav', '-o', 'audio.%(ext)s', '--postprocessor-args', '-filter_complex "lv2=plugin=https\\://github.com/lucianodato/speech-denoiser"'], {}, async function(err, output) {
+youtubedl.exec(url, ['-x', '--audio-format', 'wav', '-o', 'audio.%(ext)s', '--postprocessor-args', '-af "highpass=f=200, lowpass=f=3000"'], {}, async function(err, output) {
 if (err) throw err
 
 console.log(output.join('\n'))
