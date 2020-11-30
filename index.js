@@ -5,7 +5,6 @@ const Sox = require('sox-stream');
 const MemoryStream = require('memory-stream');
 const Duplex = require('stream').Duplex;
 const Wav = require('node-wav');
-const rnnoise = require("rnnoise");
 const url = "https://www.youtube.com/watch?v=ck7utXYcZng";
 
 
@@ -13,11 +12,6 @@ youtubedl.exec(url, ['-x', '--audio-format', 'wav', '-o', 'audio.%(ext)s'], {}, 
 if (err) throw err
 
 console.log(output.join('\n'))
-
-const denoisedBufLength = rnnoise.suppress(
-  "audio.wav",
-  "audio_dn.wav"
-);
 
 let modelPath = 'deepspeech.pbmm';
 
@@ -29,7 +23,7 @@ let scorerPath = 'deepspeech.scorer';
 
 model.enableExternalScorer(scorerPath);
 
-let audioFile = 'audio_dn.wav';
+let audioFile = 'audio.wav';
 
 if (!Fs.existsSync(audioFile)) {
 	console.log('file missing:', audioFile);
