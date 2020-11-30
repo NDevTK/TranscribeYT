@@ -18,7 +18,7 @@ jobs:
     - name: Updating index
       run: sudo apt update
     - name: Getting ffmpeg
-      run: sudo apt install -y ffmpeg lv2-dev
+      run: sudo apt install -y ffmpeg lv2-dev liblilv-0-0
     - name: Downloading deepspeech.pbmm
       uses: wei/wget@v1
       with:
