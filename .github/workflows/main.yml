@@ -18,7 +18,7 @@ jobs:
     - name: Updating index
       run: sudo apt update
     - name: Getting ffmpeg
-      run: sudo apt install -y ffmpeg
+      run: sudo apt install -y ffmpeg lv2
     - name: Downloading deepspeech.pbmm
       uses: wei/wget@v1
       with:
@@ -27,8 +27,8 @@ jobs:
       uses: wei/wget@v1
       with:
         args: -O deepspeech.scorer https://github.com/mozilla/DeepSpeech/releases/download/v0.9.1/deepspeech-0.9.1-models.scorer
-    - name: Getting deepspeech youtube-dl liblilv-dev
-      run: npm install deepspeech youtube-dl liblilv-dev
+    - name: Getting deepspeech youtube-dl
+      run: npm install deepspeech youtube-dl
     - name: sox
       run: sudo apt-get install sox
     - name: Main
